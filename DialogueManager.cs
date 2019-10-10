@@ -81,39 +81,19 @@ public class DialogueManager : MonoBehaviour
 			text = inputStream.Dequeue().Substring(text.IndexOf('}') +1);
 			TextBox.text = text;
 		}
-		
-		else if (inputStream.Peek().Contains("{")) 
-		{
-			Debug.Log("about to accept input");
-			if (Input.GetKey(KeyCode.C)) 
-			{
-				if (inputStream.Peek().Contains("{Y}")) 
-				{
-					string text = inputStream.Peek();
-					text = inputStream.Dequeue().Substring(text.IndexOf('}')+1);
-					TextBox.text = text;
-				}
-				else 
-				{
-					Debug.Log("no {Y}");
-				}
-			}
-			else if (Input.GetKey(KeyCode.X)) 
-			{
-				if (inputStream.Peek().Contains("{N}")) 
-				{
-					string text = inputStream.Peek();
-					text = inputStream.Dequeue().Substring(text.IndexOf('}')+1);
-					TextBox.text = text;
-				}
-				else 
-				{
-					Debug.Log("no {N}");
-				}
-			}
-			else {
-				Debug.Log("failed to get input");
-			}
+		else if (inputStream.Peek().Contains("{Y}") && Input.GetKey(KeyCode.C)) {
+			string text = inputStream.Peek();
+			text = inputStream.Dequeue().Substring(text.IndexOf('}')+1);
+			TextBox.text = text;
+		}
+		else if (inputStream.Peek().Contains("{N}") && Input.GetKey(KeyCode.X)) {
+			string text = inputStream.Peek();
+			text = inputStream.Dequeue().Substring(text.IndexOf('}')+1);
+			TextBox.text = text;
+		}
+		else if (inputStream.Peek().Contains("{")) {
+			inputStream.Dequeue();
+			PrintDialogue();
 		}
         else
         {
