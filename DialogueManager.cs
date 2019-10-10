@@ -78,44 +78,41 @@ public class DialogueManager : MonoBehaviour
 			string text = inputStream.Peek();
 			inputStream.Dequeue().Substring(text.IndexOf('{'), text.IndexOf('}'));
 			TextBox.text = inputStream.Dequeue();
-			
-			while (inputStream.Peek().Contains("{")) 
+			Debug.Log(inputStream.Peek());
+			PrintDialogue();
+		}
+		else if (inputStream.Peek().Contains("{")) 
+		{
+			Debug.Log("about to accept input");
+			if (Input.GetKey(KeyCode.C)) 
 			{
-				Debug.Log("about to accept input");
-				if (Input.GetKey(KeyCode.C)) 
+				if (inputStream.Peek().Contains("{Y}")) 
 				{
-					if (inputStream.Peek().Contains("{Y}")) 
-					{
-						text = inputStream.Peek();
-						inputStream.Dequeue().Substring(text.IndexOf('{'), text.IndexOf('}'));
-						TextBox.text = inputStream.Dequeue();
-					}
-					else 
-					{
-						Debug.Log("no {Y}");
-					}
-				}
-				else if (Input.GetKey(KeyCode.X)) 
-				{
-					if (inputStream.Peek().Contains("{N}")) 
-					{
-						text = inputStream.Peek();
-						inputStream.Dequeue().Substring(text.IndexOf('{'), text.IndexOf('}'));
-						TextBox.text = inputStream.Dequeue();
-					}
-					else 
-					{
-						Debug.Log("no {N}");
-					}
+					string text = inputStream.Peek();
+					inputStream.Dequeue().Substring(text.IndexOf('{'), text.IndexOf('}'));
+					TextBox.text = inputStream.Dequeue();
 				}
 				else 
 				{
-					continue;
+					Debug.Log("no {Y}");
 				}
-				
 			}
-			
-			PrintDialogue();
+			else if (Input.GetKey(KeyCode.X)) 
+			{
+				if (inputStream.Peek().Contains("{N}")) 
+				{
+					string text = inputStream.Peek();
+					inputStream.Dequeue().Substring(text.IndexOf('{'), text.IndexOf('}'));
+					TextBox.text = inputStream.Dequeue();
+				}
+				else 
+				{
+					Debug.Log("no {N}");
+				}
+			}
+			else {
+				PrintDialogue();
+			}
 		}
         else
         {
