@@ -5,4 +5,6 @@
 [NAME=Ghost]{Y}Yeah, old things!
 [NAME=Ghost]{N}Hey, what's wrong with old things?
 
+Well, bye then.
+
 EndQueue
