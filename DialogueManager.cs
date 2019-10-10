@@ -61,6 +61,7 @@ public class DialogueManager : MonoBehaviour
 
     private void PrintDialogue()
     {
+		Debug.Log("print:" + inputStream.Peek());
         if (inputStream.Peek().Contains("EndQueue")) // special phrase to stop dialogue
         {
             inputStream.Dequeue(); // Clear Queue
@@ -71,16 +72,16 @@ public class DialogueManager : MonoBehaviour
             string name = inputStream.Peek();
             name = inputStream.Dequeue().Substring(name.IndexOf('=') + 1, name.IndexOf(']') - (name.IndexOf('=') + 1));
             NameText.text = name;
+			Debug.Log("after name:" + inputStream.Peek());
             PrintDialogue(); // print the rest of this line
         }
 		else if (inputStream.Peek().Contains("{C}"))
 		{
 			string text = inputStream.Peek();
-			inputStream.Dequeue().Substring(text.IndexOf('{'), text.IndexOf('}'));
-			TextBox.text = inputStream.Dequeue();
-			Debug.Log(inputStream.Peek());
-			PrintDialogue();
+			text = inputStream.Dequeue().Substring(text.IndexOf('}') +1);
+			TextBox.text = text;
 		}
+		
 		else if (inputStream.Peek().Contains("{")) 
 		{
 			Debug.Log("about to accept input");
@@ -89,8 +90,8 @@ public class DialogueManager : MonoBehaviour
 				if (inputStream.Peek().Contains("{Y}")) 
 				{
 					string text = inputStream.Peek();
-					inputStream.Dequeue().Substring(text.IndexOf('{'), text.IndexOf('}'));
-					TextBox.text = inputStream.Dequeue();
+					text = inputStream.Dequeue().Substring(text.IndexOf('}')+1);
+					TextBox.text = text;
 				}
 				else 
 				{
@@ -102,8 +103,8 @@ public class DialogueManager : MonoBehaviour
 				if (inputStream.Peek().Contains("{N}")) 
 				{
 					string text = inputStream.Peek();
-					inputStream.Dequeue().Substring(text.IndexOf('{'), text.IndexOf('}'));
-					TextBox.text = inputStream.Dequeue();
+					text = inputStream.Dequeue().Substring(text.IndexOf('}')+1);
+					TextBox.text = text;
 				}
 				else 
 				{
@@ -111,7 +112,7 @@ public class DialogueManager : MonoBehaviour
 				}
 			}
 			else {
-				PrintDialogue();
+				Debug.Log("failed to get input");
 			}
 		}
         else

@@ -1,6 +1,6 @@
 [NAME=Ghost]Hello! I like old things.
 
-[NAME=Player]{C}[C]Old things?                          [X]Old things...
+[NAME=Player]{C}[C]Old things?                                                          [X]Old things...
 
 [NAME=Ghost]{Y}Yeah, old things!
 [NAME=Ghost]{N}Hey, what's wrong with old things?
