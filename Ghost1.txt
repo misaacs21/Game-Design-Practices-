@@ -1,10 +1,19 @@
 [NAME=Ghost]Hello! I like old things.
 
-[NAME=Player]{C}[C]Old things?                                                          [X]Old things...
-
+[NAME=Player][C]Old things?                                                          [X]Old things...
 [NAME=Ghost]{Y}Yeah, old things!
+{Y}And I could go on and on about them too!
 [NAME=Ghost]{N}Hey, what's wrong with old things?
+{N}Better prepare for an informative lecture on antiques!
 
-Well, bye then.
+EndBranch
+
+Oh, but it's kind of late...Well, bye then. Wait! But guess what??
+
+[NAME=Player][C]What?                                                                [X]Ugh, what?
+[NAME=Ghost]{Y}We can keep talking like this forever! As long as we're not branching in branches.
+{N}Rude! Nevermind.
+
+EndBranch
 
 EndQueue
